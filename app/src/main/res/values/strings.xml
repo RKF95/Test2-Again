@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Soccer</string>
+
+    <string name="title_activity_tournament">TournamentActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="Menu_GameMode1">Play Now</string>
+    <string name="Menu_GameMode2">Tournament Mode</string>
+    <string name="Menu_GameMode3">Season Mode</string>
+    <string name="Menu_GameMode4">PvP Bluetooth</string>
+</resources>
