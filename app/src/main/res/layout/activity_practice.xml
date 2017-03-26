@@ -33,7 +33,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="14dp"
-        android:onClick="shoot"
+        android:onClick="goal"
         android:id="@+id/shoot" />
 
     <ImageView
