@@ -176,7 +176,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnTouchL
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        shoot.setText("hjfsl");
+        shoot.setText("nbljgbgnbng;kj;ksj");
         xCoOrdinate = (int)event.getRawX();
         yCoOrdinate = (int)event.getRawY();
         airbud.animate().x(event.getRawX() + xCoOrdinate).y(event.getRawY() + yCoOrdinate).setDuration(0).start();
