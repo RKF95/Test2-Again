@@ -27,7 +27,10 @@
             android:theme="@style/FullscreenTheme" />
         <activity android:name=".GameplayActivity" />
         <activity android:name=".PracticeActivity" />
-        <activity android:name=".PlayNowActivity"></activity>
+        <activity android:name=".PlayNowActivity">
+            <activity android:name=".PracticeGoal" />
+
+        </activity>
     </application>
 
 </manifest>
