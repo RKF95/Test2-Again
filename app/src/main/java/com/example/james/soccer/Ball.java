@@ -21,7 +21,7 @@ public class Ball {
         possession = false;
     }
     public void move(){
-        if((goal.x - location.x) < 1 && (goal.y - location.y) < 1){
+        if((goal.x - location.x) < 5 && (goal.y - location.y) < 5){
             location = goal;
             this.stop();
             return;

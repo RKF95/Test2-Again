@@ -1,5 +1,6 @@
 package com.example.james.soccer;
 
+import android.graphics.Bitmap;
 import android.graphics.Point;
 
 /**
@@ -7,8 +8,8 @@ import android.graphics.Point;
  */
 
 public class Defender extends Player {
-    public Defender(String fname, String lname, String position, int[] numbers) {
-        super(fname, lname, position, numbers);
+    public Defender(String fname, String lname, String position, int[] numbers, Bitmap bmp) {
+        super(fname, lname, position, numbers, bmp);
     }
     @Override
     public void setZone(int SIDE_OF_FIELD){
@@ -94,9 +95,9 @@ public class Defender extends Player {
             }
         }
         if(ball.getDistanceFrom(getZoneCenter())<=30){
-            this.move(ball.getLocation());
+           // this.move(ball.getLocation());
         } else {
-            this.move(getZoneCenter());
+           // this.move(getZoneCenter());
         }
     }
 
@@ -142,9 +143,9 @@ public class Defender extends Player {
             }
         }
         if(ball.getDistanceFrom(getZoneCenter())<=30){
-            this.move(ball.getLocation());
+          //  this.move(ball.getLocation());
         } else {
-            this.move(getZoneCenter());
+           // this.move(getZoneCenter());
         }
     }
 }

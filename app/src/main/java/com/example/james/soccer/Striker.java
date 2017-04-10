@@ -1,12 +1,14 @@
 package com.example.james.soccer;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by james on 3/7/2017.
  */
 
 public class Striker extends Player {
-    public Striker(String fname, String lname, String position, int[] numbers) {
-        super(fname, lname, position, numbers);
+    public Striker(String fname, String lname, String position, int[] numbers, Bitmap bmp) {
+        super(fname, lname, position, numbers, bmp);
     }
 
     @Override
