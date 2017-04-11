@@ -26,7 +26,6 @@
             android:label="@string/title_activity_tournament"
             android:theme="@style/FullscreenTheme" />
         <activity android:name=".GameplayActivity" />
-        <activity android:name=".PracticeActivity" />
         <activity android:name=".PlayNowActivity">
             <activity android:name=".PracticeGoal" />
 

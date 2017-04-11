@@ -1,5 +1,6 @@
 package com.example.james.soccer;
 
+import android.graphics.Bitmap;
 import android.graphics.Point;
 
 /**
@@ -7,8 +8,8 @@ import android.graphics.Point;
  */
 
 public class Goalie extends Player {
-    public Goalie(String fname, String lname, int[] numbers) {
-        super(fname, lname, "G", numbers);
+    public Goalie(String fname, String lname, int[] numbers, Bitmap bmp) {
+        super(fname, lname, "G", numbers, bmp);
     }
 
     @Override
@@ -30,12 +31,12 @@ public class Goalie extends Player {
             setLocation(new Point(getLocation().x, ball.getLocation().y));
         }
         if(ball.getDistanceFrom(getLocation())<=(15*(getGoalkeeping()/100))){
-            this.move(ball.getLocation());
+            //this.move(ball.getLocation());
         }
     }
 
     @Override
     public void attack(Ball ball) {
-        this.move(getZoneCenter());
+        //this.move(getZoneCenter());
     }
 }

@@ -333,8 +333,4 @@ public class MainActivity extends AppCompatActivity {
         startActivity(myIntent);
     }
 
-    public void Practice(View view) {
-        Intent myIntent = new Intent(this,PracticeActivity.class);
-        startActivity(myIntent);
-    }
 }

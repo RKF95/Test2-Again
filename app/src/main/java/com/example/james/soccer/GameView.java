@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -18,24 +19,24 @@ import android.view.SurfaceView;
 
 public class GameView extends SurfaceView {
 
-    int width = Resources.getSystem().getDisplayMetrics().widthPixels;
-    int height = Resources.getSystem().getDisplayMetrics().heightPixels;
     SurfaceHolder holder;
     Bitmap myBitmap;
-    float x,y = 0;
+    int x,y = 50;
+    GameThread thread;
+    Player airbud;
 
-     Rect g1 = new Rect(100,405,150,455);
+    Rect g1 = new Rect(100,405,150,455);
 
 
-     Rect rd1 = new Rect(320,520,410,590);
-     Rect ld2 = new Rect(1360,270,1450,340);
-     Rect rd2 = new Rect(1360,520,1450,590);
-     Rect m1 = new Rect(470,395,560,465);
+    Rect rd1 = new Rect(320,520,410,590);
+    Rect ld2 = new Rect(1360,270,1450,340);
+    Rect rd2 = new Rect(1360,520,1450,590);
+    Rect m1 = new Rect(470,395,560,465);
     Rect m2 = new Rect(1210,395,1300,465);
 
     Rect ld1 = new Rect(320,270,410,340);
     Rect ls1 = new Rect(620,270,710,340);
-     Rect rs1 = new Rect(620,520,710,590);
+    Rect rs1 = new Rect(620,520,710,590);
     Rect ls2 = new Rect(1050,270,1140,340);
     Rect rs2 = new Rect(1050,520,1140,590);
 
@@ -47,15 +48,19 @@ public class GameView extends SurfaceView {
 
     public GameView(Context context) {
         super(context);
-        myBitmap= BitmapFactory.decodeResource(getResources(), R.drawable.soccerfield2);
+        //setBackground(getResources().getDrawable(R.drawable.soccerfield2));
+        thread = new GameThread(this);
+        myBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.shepherdrun);
+        int[] numbers = {90,90,90,90,90,90,90,90,90,90,90};
+        airbud = new Striker("airbud", "", "ST", numbers, myBitmap);
+        airbud.setLocation(new Point(100,10));
+
         holder = getHolder();
         holder.addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
-                Canvas c = holder.lockCanvas();
-                onDraw(c);
-                holder.unlockCanvasAndPost(c);
-
+                thread.setRunning(true);
+                thread.start();
             }
 
             @Override
@@ -65,25 +70,34 @@ public class GameView extends SurfaceView {
 
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
+                boolean retry = true;
+                thread.setRunning(false);
+                while(retry){
+                    try {
+                        thread.join();
+                        retry = false;
+                    } catch(InterruptedException e){
 
+                    }
+                }
             }
         });
     }
 
-    public void getX(float x)
+  //  public void getX(float x)
     {
         this.x = x;
     }
 
-    public void getY(float y)
+ //   public void getY(float y)
     {
         this.y = y;
     }
 
 
     @Override
-    public void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
         Paint p = new Paint();
         p.setColor(Color.RED);
         p.setStrokeWidth(10);
@@ -93,7 +107,11 @@ public class GameView extends SurfaceView {
         p1.setStrokeWidth(10);
         p1.setStyle(Paint.Style.STROKE);
 
-        canvas.drawRect(g1,p);
+        airbud.move();
+        canvas.drawColor(Color.GREEN);
+        canvas.drawBitmap(myBitmap, airbud.getLocation().x, airbud.getLocation().y, null);
+
+        /*canvas.drawRect(g1,p);
         canvas.drawRect(rd1,p);
         canvas.drawRect(ld1,p);
         canvas.drawRect(g2,p1);
@@ -104,23 +122,25 @@ public class GameView extends SurfaceView {
         canvas.drawRect(rs1,p);
         canvas.drawRect(ls1,p);
         canvas.drawRect(ls2,p1);
-        canvas.drawRect(rs2,p1);
+        canvas.drawRect(rs2,p1);*/
 
 
     }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        int x = (int)event.getX();
-        int y = (int)event.getY();
+        x = (int)event.getX()-40;
+        y = (int)event.getY()-40;
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                airbud.setGoal(new Point(x,y));
                 break;
             case MotionEvent.ACTION_MOVE:
                 break;
             case MotionEvent.ACTION_UP:
 
                 break;
-        }return true;
+        }
+        return true;
     }
 
 

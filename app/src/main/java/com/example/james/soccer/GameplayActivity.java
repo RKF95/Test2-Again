@@ -11,8 +11,8 @@ public class GameplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gameplay);
     }
-    Striker st = new Striker("Air", "Bud", "RS", new int[]{26, 99, 99, 99, 99, 99, 99, 99, 99, 0, 1});
-    Goalie gk = new Goalie("Manuel","Neuer", new int[]{76,93,84,80,68,78,80,64,80,93,2});
+  //  Striker st = new Striker("Air", "Bud", "RS", new int[]{26, 99, 99, 99, 99, 99, 99, 99, 99, 0, 1});
+    //Goalie gk = new Goalie("Manuel","Neuer", new int[]{76,93,84,80,68,78,80,64,80,93,2});
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {

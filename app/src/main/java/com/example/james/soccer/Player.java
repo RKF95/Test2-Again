@@ -1,5 +1,6 @@
 package com.example.james.soccer;
 
+import android.graphics.Bitmap;
 import android.graphics.Point;
 
 /**
@@ -12,10 +13,12 @@ public abstract class Player {
     private Point location, zoneCenter, goal;
     private boolean hasBall, user = false;
     private double velocity;
+    private Bitmap bmp;
 
-    public Player(String fname, String lname,String position, int[] numbers){
+    public Player(String fname, String lname,String position, int[] numbers, Bitmap bmp){
         this.fname = fname;
         this.lname = lname;
+        this.bmp = bmp;
         this.position = position;
         for(int i = 0; i < numbers.length; i++) {
             switch (i) {
@@ -83,13 +86,16 @@ public abstract class Player {
         double distance = ball.getDistanceFrom(goal);
         return distance * (.3) * (passing/100);
     }
-    public void move(Point goal){
-        int newX = (int)(location.x + ((speed/100)*((goal.x - location.x)/((goal.x - location.x)+(goal.y - location.y)))));
-        int newY = (int)(location.y + ((speed/100)*((goal.y - location.y)/((goal.x - location.x)+(goal.y - location.y)))));
-        location.set(newX, newY);
+    public void move(){
+        if(goal != null) {
+            int newX = (int) (location.x + ((speed / 5000.0) * ((goal.x - location.x))));
+            int newY = (int) (location.y + ((speed / 5000.0) * ((goal.y - location.y))));
+
+            setLocation(new Point(newX, newY));
+        }
     }
-    public void dribble(Ball ball, Point goal){
-        move(goal);
+    public void dribble(Ball ball){
+        move();
         ball.setLocation(location);
     }
 
